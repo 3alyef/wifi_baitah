@@ -1,11 +1,11 @@
-import { Image, Text } from "react-native";
+import { Image, Text, View } from "react-native";
 import wifiWhite from "../../assets/wifi-white.png";
-import { styles } from "./style/style";
+import { style } from "./style/style";
 export default function AppLogo() {
 	return (
-		<>
-			<Image source={wifiWhite} style={styles.AppLogo} />
-			<Text style={styles.Tittle}>Wi-Fi Baitah</Text>
-		</>
+		<View style={style.Container}>
+			<Image source={wifiWhite} style={style.AppLogo} />
+			<Text style={style.Tittle}>Wi-Fi Baitah</Text>
+		</View>
 	)
 };

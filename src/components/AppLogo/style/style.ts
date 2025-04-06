@@ -1,16 +1,19 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+export const style = StyleSheet.create({
+  Container: {
+    alignItems: "center",
+  },
   AppLogo: {
-    resizeMode: 'contain',
+    resizeMode: "contain",
     height: 180,
     width: 180,
   },
   Tittle: {
     //textAlign: 'center',
     //justifyContent: 'center',
-    color: 'white',
+    color: "white",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
