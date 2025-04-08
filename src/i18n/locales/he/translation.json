@@ -1,0 +1,9 @@
+{
+  "screens": {
+    "login": {
+      "wi-fi_baitah": "Wi-Fi הביתה",
+      "password": "סיסמה",
+      "login": "התחברות"
+    }
+  }
+}

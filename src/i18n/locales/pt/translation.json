@@ -1,0 +1,9 @@
+{
+	"screens": {
+		"login": {
+			"wi-fi_habaitah": "Wi-Fi Habaitah",
+			"password": "Senha",
+			"login": "Login"
+		}
+	}
+}

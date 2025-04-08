@@ -31,10 +31,24 @@ export const style = StyleSheet.create({
   },
   PasswordContainer: {
     flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
   },
   Password: {
     fontSize: 15,
     fontWeight: 400,
+    color: "white",
+    flex: 1,
+  },
+  ClearButton: {
+    backgroundColor: "rgba(255,255,255,0.1)",
+    padding: 4,
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 2,
+  },
+  ClearIcon: {
     color: "white",
   },
 });
