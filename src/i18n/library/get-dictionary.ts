@@ -1,5 +1,4 @@
 import { Locale } from ".."; // deve ser 'en' | 'pt' | 'he' (por exemplo)
-import TypeLocales from "../locales/locales.type"; // deve ser o tipo da estrutura do JSON de tradução
 
 // Mapeamento de idiomas para funções que importam o JSON correspondente
 const dictionaries = {

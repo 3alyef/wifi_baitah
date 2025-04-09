@@ -3,8 +3,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 import { globalStyles } from './src/styles/globalStyles';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
-import Router from './src/services/Router/Router';
-import getDeviceLanguage from './src/i18n/utils/getDeviceLanguage';
+//import Router from './src/services/Router/Router';
 import GlobalContextProvider, { useGlobalContext } from './src/context/GlobalContext';
 import {
 	Keyboard,
@@ -14,16 +13,13 @@ import {
 } from 'react-native';
 
 function App(): React.JSX.Element {
-	const [router] = useState<Router>(new Router());
+	/*const [router] = useState<Router>(new Router());
 	useEffect(() => {
 		async function startRouter() {
 			await router.init();
-			console.log("language: ", getDeviceLanguage())
-			// console.log("URL: ", router.getBaseURL());
 		}
 		startRouter();
-
-	}, []);
+	}, []);*/
 	return (
 		<Provider store={store}>
 			<GlobalContextProvider>

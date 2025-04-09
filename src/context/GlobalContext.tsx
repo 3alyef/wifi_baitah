@@ -35,7 +35,6 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 		setCurrentLanguage(() => {
 			let lang: Locale = 'en';
 			for (const language of getDeviceLanguage()) {
-				console.log('here: ', language.languageCode)
 				if (i18n.locales.includes(language.languageCode as Locale)) {
 					lang = language.languageCode as Locale;
 					break

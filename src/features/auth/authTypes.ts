@@ -1,13 +1,11 @@
 export interface AuthState {
   loading: boolean;
-  user: string | null;
-  token: string | null;
+  cookie: string | null;
   error: string | null;
 }
 
 export interface LoginSuccessPayload {
-  user: string;
-  token: string;
+  cookie: string;
 }
 
 export interface LoginFailurePayload {

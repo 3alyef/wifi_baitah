@@ -7,8 +7,7 @@ import {
 
 const initialState: AuthState = {
   loading: false,
-  user: null,
-  token: null,
+  cookie: null,
   error: null,
 };
 
@@ -22,20 +21,17 @@ export const authSlice = createSlice({
     },
     loginSuccess(state, action: PayloadAction<LoginSuccessPayload>) {
       state.loading = false;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.cookie = action.payload.cookie;
       state.error = null;
     },
     loginFailure(state, action: PayloadAction<LoginFailurePayload>) {
       state.loading = false;
-      state.user = null;
-      state.token = null;
+      state.cookie = null;
       state.error = action.payload.error;
     },
     logout(state) {
       state.loading = false;
-      state.user = null;
-      state.token = null;
+      state.cookie = null;
       state.error = null;
     },
   },

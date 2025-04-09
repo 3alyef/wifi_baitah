@@ -3,14 +3,23 @@ import { GestureResponderEvent, View } from "react-native";
 import { styles } from "./style";
 import { useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
+import { routerLoginThunk } from "@/features/router/routerThunks";
+import { useAppDispatch } from "@/app/hooks";
 export default function Login() {
-	const { dictionary, setCurrentLanguage } = useGlobalContext();
-	if (!dictionary) return <></>
-
 	const [password, setPassword] = useState('');
+	const { dictionary } = useGlobalContext();
+
+	const dispatch = useAppDispatch();
+
+	const handleLogin = (password: string) => {
+		dispatch(routerLoginThunk(password));
+	};
+
 	function onPressLogin(event: GestureResponderEvent) {
-		console.log("Password: ", password);
+		handleLogin(password);
 	}
+
+	if (!dictionary) return <></>; // definir screen loading
 
 	const { login } = dictionary.screens;
 	return (
