@@ -1,7 +1,7 @@
 {
   "screens": {
     "login": {
-      "wi-fi_baitah": "Wi-Fi הביתה",
+      "wifi_habaitah": "Wi-Fi הביתה",
       "password": "סיסמה",
       "login": "התחברות"
     }

@@ -6,10 +6,12 @@ import { style } from "./style/style";
 interface PropsPasswordView {
 	password: string;
 	setPassword: React.Dispatch<React.SetStateAction<string>>
+	placeHolder: string
 }
 export default function PasswordView({
 	password,
-	setPassword
+	setPassword,
+	placeHolder
 }: PropsPasswordView) {
 	const [show, setShow] = useState(true);
 
@@ -45,7 +47,7 @@ export default function PasswordView({
 					style={style.Password}
 					value={password}
 					onChangeText={setPassword}
-					placeholder="Password"
+					placeholder={placeHolder}
 					secureTextEntry={!show}
 				/>
 				{password.length > 0 && (

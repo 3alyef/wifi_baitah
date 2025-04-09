@@ -1,7 +1,7 @@
 {
 	"screens": {
 		"login": {
-			"wi-fi_habaitah": "Wi-Fi Habaitah",
+			"wifi_habaitah": "Wi-Fi Habaitah",
 			"password": "Password",
 			"login": "Login"
 		}

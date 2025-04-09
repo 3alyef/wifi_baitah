@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './src/app/store';
 import Router from './src/services/Router/Router';
 import getDeviceLanguage from './src/i18n/utils/getDeviceLanguage';
+import GlobalContextProvider, { useGlobalContext } from './src/context/GlobalContext';
 import {
 	Keyboard,
 	Pressable,
@@ -14,7 +15,6 @@ import {
 
 function App(): React.JSX.Element {
 	const [router] = useState<Router>(new Router());
-
 	useEffect(() => {
 		async function startRouter() {
 			await router.init();
@@ -22,17 +22,19 @@ function App(): React.JSX.Element {
 			// console.log("URL: ", router.getBaseURL());
 		}
 		startRouter();
+
 	}, []);
 	return (
 		<Provider store={store}>
-			<SafeAreaView style={{ flex: 1 }} >
-				<StatusBar barStyle="light-content" backgroundColor="#155c58" />
-				<Pressable onPress={Keyboard.dismiss} style={globalStyles.appBackground}>
-					<AppNavigator />
-				</Pressable>
-			</SafeAreaView>
+			<GlobalContextProvider>
+				<SafeAreaView style={{ flex: 1 }} >
+					<StatusBar barStyle="light-content" backgroundColor="#155c58" />
+					<Pressable onPress={Keyboard.dismiss} style={globalStyles.appBackground}>
+						<AppNavigator />
+					</Pressable>
+				</SafeAreaView>
+			</GlobalContextProvider>
 		</Provider>
-
 	);
 }
 
