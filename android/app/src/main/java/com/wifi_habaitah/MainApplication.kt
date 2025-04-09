@@ -1,4 +1,4 @@
-package com.wifi_baitah
+package com.wifi_habaitah
 
 import android.app.Application
 import com.facebook.react.PackageList

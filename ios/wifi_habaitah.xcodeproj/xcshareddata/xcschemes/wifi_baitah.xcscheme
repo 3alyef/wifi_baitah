@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "wifi_baitah.app"
-               BlueprintName = "wifi_baitah"
-               ReferencedContainer = "container:wifi_baitah.xcodeproj">
+               BuildableName = "WiFiHabaitah.app"
+               BlueprintName = "WiFiHabaitah"
+               ReferencedContainer = "container:WiFiHabaitah.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "wifi_baitahTests.xctest"
-               BlueprintName = "wifi_baitahTests"
-               ReferencedContainer = "container:wifi_baitah.xcodeproj">
+               BuildableName = "WiFiHabaitahTests.xctest"
+               BlueprintName = "WiFiHabaitahTests"
+               ReferencedContainer = "container:WiFiHabaitah.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "wifi_baitah.app"
-            BlueprintName = "wifi_baitah"
-            ReferencedContainer = "container:wifi_baitah.xcodeproj">
+            BuildableName = "WiFiHabaitah.app"
+            BlueprintName = "WiFiHabaitah"
+            ReferencedContainer = "container:WiFiHabaitah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "wifi_baitah.app"
-            BlueprintName = "wifi_baitah"
-            ReferencedContainer = "container:wifi_baitah.xcodeproj">
+            BuildableName = "WiFiHabaitah.app"
+            BlueprintName = "WiFiHabaitah"
+            ReferencedContainer = "container:WiFiHabaitah.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
