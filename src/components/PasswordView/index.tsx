@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
-import { Animated, Pressable, Text, TextInput, View } from "react-native";
+import { useState } from "react";
+import { Pressable, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { createStyle } from "./style/style";
+import { createStyle } from "./style";
 import { useGlobalContext } from "@/context/GlobalContext";
+import BtnContainer from "../BtnContainer";
 
 interface PropsPasswordView {
 	password: string;
@@ -16,54 +17,30 @@ export default function PasswordView({
 }: PropsPasswordView) {
 	const [show, setShow] = useState(true);
 
-	const scaleAnim = useRef(new Animated.Value(1)).current;
-
-	const animateIn = () => {
-		Animated.spring(scaleAnim, {
-			toValue: 0.85,
-			useNativeDriver: true,
-			speed: 50,
-			bounciness: 10,
-		}).start();
-	};
-
-	const animateOut = () => {
-		Animated.spring(scaleAnim, {
-			toValue: 1,
-			useNativeDriver: true,
-			speed: 20,
-			bounciness: 6,
-		}).start();
-	};
 	const { theme } = useGlobalContext();
 
 	const styles = createStyle(theme);
 	return (
-		<View style={styles.Container}>
-			<View style={styles.EyeContainer}>
-				<Pressable style={styles.Eye} onPress={() => setShow(!show)}>
-					<Icon name={show ? 'eye' : 'eye-off'} size={27} style={{ color: 'white' }} />
+		<View style={styles.container}>
+			<View style={styles.eyeContainer}>
+				<Pressable style={styles.eye} onPress={() => setShow(!show)}>
+					<Icon name={show ? 'eye' : 'eye-off'} size={27} style={{ color: theme.primary }} />
 				</Pressable>
-				<View style={styles.EyeView}></View>
+				<View style={styles.eyeView}></View>
 			</View>
-			<View style={styles.PasswordContainer}>
+			<View style={styles.passwordContainer}>
 				<TextInput
-					style={styles.Password}
+					style={styles.password}
 					value={password}
 					onChangeText={setPassword}
 					placeholder={placeHolder}
+					placeholderTextColor={theme.primary + "77"}
 					secureTextEntry={!show}
 				/>
 				{password.length > 0 && (
-					<Pressable
-						onPressIn={animateIn}
-						onPressOut={animateOut}
-						onPress={() => setPassword("")}
-					>
-						<Animated.View style={[styles.ClearButton, { transform: [{ scale: scaleAnim }] }]}>
-							<Icon name="close" size={18} style={styles.ClearIcon} />
-						</Animated.View>
-					</Pressable>
+					<BtnContainer onPress={() => setPassword("")}>
+						<Icon name="close" size={18} style={styles.clearIcon} />
+					</BtnContainer>
 				)}
 			</View>
 		</View>

@@ -3,54 +3,51 @@ import { ThemeContract } from "../../../themes/index";
 
 export function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
-    Container: {
+    container: {
       backgroundColor: theme.surface,
       borderColor: theme.primary,
-      borderWidth: 1,
-      padding: 1,
-      borderRadius: 2,
+      borderWidth: 1.2,
+      padding: 6,
+      borderRadius: 7,
       flexDirection: "row",
       direction: "ltr",
       alignItems: "center",
       width: "100%",
-      gap: 2,
+      gap: 4,
+      shadowColor: theme.shadow,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.08,
+      shadowRadius: 4,
+      elevation: 2,
     },
-    EyeContainer: {
+    eyeContainer: {
       flexDirection: "row",
       alignItems: "center",
       height: "100%",
     },
-    Eye: {
+    eye: {
       padding: 4,
     },
-    EyeView: {
+    eyeView: {
       width: 1,
       height: "80%",
-      backgroundColor: theme.shadow + "22",
+      backgroundColor: theme.primaryDark + "22",
       marginLeft: 2,
       marginRight: 2,
       alignSelf: "center",
     },
-    PasswordContainer: {
+    passwordContainer: {
       flex: 1,
       flexDirection: "row",
       alignItems: "center",
     },
-    Password: {
+    password: {
       fontSize: 15,
       fontWeight: 400,
       color: theme.text,
       flex: 1,
     },
-    ClearButton: {
-      backgroundColor: theme.primary + "22",
-      padding: 4,
-      borderRadius: 100,
-      justifyContent: "center",
-      alignItems: "center",
-      margin: 2,
-    },
-    ClearIcon: {
+    clearIcon: {
       color: theme.primaryDark,
     },
   });

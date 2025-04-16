@@ -25,7 +25,7 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 			setTheme(lightTheme);
 			return;
 		}
-		setThemeId('light');
+		setThemeId('dark');
 		setTheme(darkTheme);
 	}
 
