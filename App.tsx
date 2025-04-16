@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
 		<Provider store={store}>
 			<GlobalContextProvider>
 				<SafeAreaView style={{ flex: 1 }} >
-					<StatusBar barStyle="light-content" backgroundColor="#155c58" />
+					<StatusBar barStyle="light-content" backgroundColor="black" />
 					<Pressable onPress={Keyboard.dismiss} style={globalStyles.appBackground}>
 						<AppNavigator />
 					</Pressable>

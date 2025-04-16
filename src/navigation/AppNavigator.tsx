@@ -1,25 +1,35 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home, Login } from "../screens";
-import { useState } from "react";
+import { Status, Login } from "../screens";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
+import { RootStackParamList } from "./types/StackTypes";
+import { Header } from "@/components/index";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-	const [isLogged, setIsLogged] = useState(false);
+	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
+
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName={isLogged ? "Home" : "Login"}>
-				<Stack.Screen
-					name="Home"
-					component={Home}
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen
+			{isLoggedIn && <Header />}
+			<Stack.Navigator initialRouteName={"Login"}>
+				{isLoggedIn ? (
+					<>
+						<Stack.Screen
+							name="Status"
+							component={Status}
+							options={{
+								headerShown: false
+							}}
+						/>
+					</>
+				) : <Stack.Screen
 					name="Login"
 					component={Login}
 					options={{ headerShown: false }}
-				/>
+				/>}
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

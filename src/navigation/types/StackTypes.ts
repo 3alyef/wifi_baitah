@@ -1,8 +1,8 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-type StackNavigation = {
-  Home: undefined;
-  Form: undefined;
+export type RootStackParamList = {
+  Login: undefined;
+  Status: undefined;
 };
 
-export type StackTypes = NativeStackNavigationProp<StackNavigation>;
+export type RootStackNavigation = NativeStackNavigationProp<RootStackParamList>;

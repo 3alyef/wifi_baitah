@@ -1,18 +1,16 @@
 import Router from "@/services/router/Router";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { errorMsg, routerError } from "./routerErrorTypes";
+import { errorMsg, rejectValueType } from "../types";
 
-export const routerLoginThunk = createAsyncThunk<
+export const routerNavigateThunk = createAsyncThunk<
   { baseURL: string; cookie: string },
   string,
   {
-    rejectValue: {
-      message: routerError;
-    };
+    rejectValue: rejectValueType;
   }
 >(
   // o asyncThunk lida com operações assíncronas
-  "router/login",
+  "router/navigate",
   async (password: string, { rejectWithValue }) => {
     const router = new Router();
     await router.defineBaseURL();

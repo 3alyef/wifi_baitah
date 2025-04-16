@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RouterState } from "./routerTypes";
-import { routerLoginThunk } from "./routerThunks";
-import { routerError } from "./routerErrorTypes";
+import { RouterState, routerError } from "./types";
+import { routerLoginThunk, routerNavigateThunk } from "./thunks";
 
 const initialState: RouterState = {
   baseURL: "", // url router
@@ -14,11 +13,7 @@ const initialState: RouterState = {
 const routerSlice = createSlice({
   name: "router",
   initialState,
-  reducers: {
-    setBaseURL: (state, action) => {
-      state.baseURL = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(routerLoginThunk.pending, (state) => {
@@ -37,11 +32,15 @@ const routerSlice = createSlice({
         // falha
         state.isLoading = false;
         state.isLoggedIn = false;
+        state.cookie = "";
         state.error =
           (action.payload?.message as routerError) || routerError.UNKNOWN_ERROR;
-      });
+      })
+      .addCase(routerNavigateThunk.pending, (state, action) => {})
+      .addCase(routerNavigateThunk.fulfilled, (state, action) => {})
+      .addCase(routerNavigateThunk.rejected, (state, action) => {});
   },
 });
 
-export const { setBaseURL } = routerSlice.actions;
+// export const { setBaseURL } = routerSlice.actions;
 export default routerSlice.reducer;

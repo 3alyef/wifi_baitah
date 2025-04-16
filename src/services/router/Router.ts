@@ -1,7 +1,10 @@
 import { encryptBase64 } from "@/utils/base64";
 import { NetworkInfo } from "react-native-network-info";
 import CookieManager from "@react-native-cookies/cookies";
-import { errorMsg, routerError } from "@/features/router/routerErrorTypes";
+import {
+  errorMsg,
+  routerError,
+} from "@/features/router/types/routerErrorTypes";
 
 interface RouterCookies {
   ecos_pw?: {
@@ -76,7 +79,7 @@ export default class Router {
       }
     } catch (err) {
       const error = err as errorMsg;
-      console.error("Error trying to log in:", error.message);
+      console.log("Error trying to log in:", error.message);
       throw error;
     }
   }

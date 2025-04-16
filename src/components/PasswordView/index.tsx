@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { Animated, Pressable, Text, TextInput, View } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons"
-import { style } from "./style/style";
+import Icon from "react-native-vector-icons/Ionicons";
+import { createStyle } from "./style/style";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 interface PropsPasswordView {
 	password: string;
@@ -34,33 +35,33 @@ export default function PasswordView({
 			bounciness: 6,
 		}).start();
 	};
+	const { theme } = useGlobalContext();
+
+	const styles = createStyle(theme);
 	return (
-		<View style={style.Container}>
-			<View style={style.EyeContainer}>
-				<Pressable style={style.Eye} onPress={() => setShow(!show)}>
+		<View style={styles.Container}>
+			<View style={styles.EyeContainer}>
+				<Pressable style={styles.Eye} onPress={() => setShow(!show)}>
 					<Icon name={show ? 'eye' : 'eye-off'} size={27} style={{ color: 'white' }} />
 				</Pressable>
-				<View style={style.EyeView}></View>
+				<View style={styles.EyeView}></View>
 			</View>
-			<View style={style.PasswordContainer}>
+			<View style={styles.PasswordContainer}>
 				<TextInput
-					style={style.Password}
+					style={styles.Password}
 					value={password}
 					onChangeText={setPassword}
 					placeholder={placeHolder}
 					secureTextEntry={!show}
 				/>
 				{password.length > 0 && (
-					/*<Pressable style={style.ClearButton} onPress={() => setPassword("")}>
-						<Icon name="close" size={16} style={style.ClearIcon} />
-					</Pressable>*/
 					<Pressable
 						onPressIn={animateIn}
 						onPressOut={animateOut}
 						onPress={() => setPassword("")}
 					>
-						<Animated.View style={[style.ClearButton, { transform: [{ scale: scaleAnim }] }]}>
-							<Icon name="close" size={18} style={style.ClearIcon} />
+						<Animated.View style={[styles.ClearButton, { transform: [{ scale: scaleAnim }] }]}>
+							<Icon name="close" size={18} style={styles.ClearIcon} />
 						</Animated.View>
 					</Pressable>
 				)}

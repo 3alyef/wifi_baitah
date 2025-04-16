@@ -1,7 +1,9 @@
 {
+	"global": {
+		"wifi_habaitah": "Wi-Fi הביתה"
+	},
   "screens": {
     "login": {
-      "wifi_habaitah": "Wi-Fi הביתה",
       "password": "סיסמה",
       "login": "התחברות"
     }

@@ -1,7 +1,9 @@
 export default interface TypeLocales {
+  global: {
+    wifi_habaitah: string;
+  };
   screens: {
     login: {
-      wifi_habaitah: string;
       password: string;
       login: string;
     };

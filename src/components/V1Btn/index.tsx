@@ -1,5 +1,6 @@
 import { GestureResponderEvent, Pressable, Text, View } from "react-native";
-import { style } from "./style/style";
+import { createStyle } from "./style/style";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 interface PropsV1Btn {
 	text: string;
@@ -7,14 +8,16 @@ interface PropsV1Btn {
 }
 
 export default function V1Btn({ text, handlePress }: PropsV1Btn) {
+	const { theme } = useGlobalContext();
+	const styles = createStyle(theme);
 	return (
-		<View style={style.Container}>
+		<View style={styles.Container}>
 			<Pressable style={({ pressed }) => [
-				style.PressableContainer,
-				pressed && style.Pressed
+				styles.PressableContainer,
+				pressed && styles.Pressed
 			]}
 				onPress={handlePress}>
-				<Text style={style.Text}>
+				<Text style={styles.Text}>
 					{text}
 				</Text>
 			</Pressable>

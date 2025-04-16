@@ -54,6 +54,7 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 	}, [currentLanguage])
 	return (
 		<GlobalContext.Provider value={{
+			theme,
 			themeId,
 			toggleTheme,
 			currentLanguage,
