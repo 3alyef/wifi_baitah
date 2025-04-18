@@ -12,6 +12,7 @@ export function createStyle(theme: ThemeContract) {
     Content: {
       width: "75%",
       alignItems: "center",
+      justifyContent: "center",
       gap: 20,
     },
   });

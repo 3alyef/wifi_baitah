@@ -1,0 +1,16 @@
+{
+  "global": {
+    "wifi_habaitah": "Wi-Fi Χαμπάιτα",
+    "habaitah": "Χαμπάιτα",
+    "password": {
+      "password": "Κωδικός",
+      "incorrect_password_entered": "Εισήχθη λανθασμένος κωδικός",
+      "please_enter_a_valid_password": "Παρακαλώ εισάγετε έναν έγκυρο κωδικό"
+    }
+  },
+  "screens": {
+    "login": {
+      "login": "Σύνδεση"
+    }
+  }
+}

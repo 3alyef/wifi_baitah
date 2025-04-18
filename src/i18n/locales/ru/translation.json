@@ -1,0 +1,16 @@
+{
+  "global": {
+    "wifi_habaitah": "Wi-Fi Хабайта",
+    "habaitah": "Хабайта",
+    "password": {
+      "password": "Пароль",
+      "incorrect_password_entered": "Введен неправильный пароль",
+      "please_enter_a_valid_password": "Пожалуйста, введите правильный пароль"
+    }
+  },
+  "screens": {
+    "login": {
+      "login": "Войти"
+    }
+  }
+}

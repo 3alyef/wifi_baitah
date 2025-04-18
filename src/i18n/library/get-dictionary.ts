@@ -10,8 +10,19 @@ const dictionaries = {
     import("../locales/he/translation.json").then((module) => module.default),
   zh: () =>
     import("../locales/zh/translation.json").then((module) => module.default),
+  "zh-rTW": () =>
+    import("../locales/zh-rTW/translation.json").then(
+      (module) => module.default
+    ),
   ar: () =>
     import("../locales/ar/translation.json").then((module) => module.default),
+  ru: () =>
+    import("../locales/ru/translation.json").then((module) => module.default),
+
+  el: () =>
+    import("../locales/el/translation.json").then((module) => module.default),
+  es: () =>
+    import("../locales/es/translation.json").then((module) => module.default),
 };
 
 // Função para pegar a tradução conforme o locale

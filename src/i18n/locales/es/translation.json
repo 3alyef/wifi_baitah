@@ -1,0 +1,16 @@
+{
+  "global": {
+    "wifi_habaitah": "Wi-Fi Habaitah",
+    "habaitah": "Habaitah",
+    "password": {
+      "password": "Contraseña",
+      "incorrect_password_entered": "Contraseña incorrecta ingresada",
+      "please_enter_a_valid_password": "Por favor ingrese una contraseña válida"
+    }
+  },
+  "screens": {
+    "login": {
+      "login": "Iniciar sesión"
+    }
+  }
+}

@@ -4,7 +4,9 @@ import { direction } from "../../../styles/globalStyles";
 
 export function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
-    container: {},
+    container: {
+      width: "100%",
+    },
     subContainer: {
       backgroundColor: theme.surface,
       borderColor: theme.primary,

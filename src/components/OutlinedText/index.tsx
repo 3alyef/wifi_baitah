@@ -25,7 +25,7 @@ export default function OutlinedText({
 	const styles = createStyle(theme);
 
 	function getTextWidth() {
-		return currentLanguage === 'zh'
+		return currentLanguage === 'zh' || currentLanguage === 'zh-rTW'
 			? fontSize * text.length
 			: fontSize * text.length * 0.6;
 	}
