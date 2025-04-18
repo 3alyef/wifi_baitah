@@ -1,10 +1,15 @@
 {
 	"global": {
-		"wifi_habaitah": "Wi-Fi Habaitah"
+		"wifi_habaitah": "Wi-Fi Habaitah",
+		"habaitah": "Habaitah",
+		"password": {
+      "password": "Password",
+			"incorrect_password_entered": "Incorrect password entered",
+			"please_enter_a_valid_password": "Please enter a valid password"
+    }
 	},
 	"screens": {
 		"login": {
-			"password": "Password",
 			"login": "Login"
 		}
 	}

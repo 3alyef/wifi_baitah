@@ -1,9 +1,10 @@
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { createStyle } from "./style";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useAppDispatch } from "@/app/hooks";
-import { routerLoginThunk } from "@/features/router/thunks";
+import PressableContainer from "../PressableContainer";
+import { logout } from "@/features/router/routerSlice";
 
 export default function Header() {
 	const { dictionary, theme } = useGlobalContext();
@@ -15,11 +16,14 @@ export default function Header() {
 	const dispatch = useAppDispatch();
 	return (
 		<View style={styles.container}>
-			<Icon name="menu" size={30} style={styles.icon} />
+			<PressableContainer onPress={() => console.log("menu")}>
+				<Icon name="menu" size={30} style={styles.icon} />
+			</PressableContainer>
+
 			<Text style={styles.title}>{dictionary.global.wifi_habaitah}</Text>
-			<Pressable onPress={() => dispatch(routerLoginThunk('oi'))}>
+			<PressableContainer onPress={() => dispatch(logout())}>
 				<Icon name="lock-open-outline" size={25} style={styles.icon} />
-			</Pressable>
+			</PressableContainer>
 		</View>
 	);
 }

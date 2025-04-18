@@ -13,7 +13,18 @@ const initialState: RouterState = {
 const routerSlice = createSlice({
   name: "router",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.cookie = "";
+      state.baseURL = "";
+      state.isLoading = false;
+      state.error = null;
+    },
+    cleanError: (state) => {
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(routerLoginThunk.pending, (state) => {
@@ -42,5 +53,5 @@ const routerSlice = createSlice({
   },
 });
 
-// export const { setBaseURL } = routerSlice.actions;
+export const { logout, cleanError } = routerSlice.actions;
 export default routerSlice.reducer;

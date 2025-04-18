@@ -4,3 +4,4 @@ export { default as V1Btn } from "./V1Btn";
 export { default as Header } from "./Header";
 export { default as DataView } from "./DataView";
 export { default as BtnContainer } from "./BtnContainer";
+export { default as OutlinedText } from "./OutlinedText";

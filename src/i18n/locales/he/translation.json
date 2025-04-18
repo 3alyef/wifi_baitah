@@ -1,10 +1,15 @@
 {
 	"global": {
-		"wifi_habaitah": "Wi-Fi הביתה"
+		"wifi_habaitah": "Wi-Fi הביתה",
+		"habaitah": "הביתה",
+		"password": {
+      "password": "סיסמה",
+			"incorrect_password_entered": "הוזנה סיסמה שגויה",
+			"please_enter_a_valid_password": "נא להזין סיסמה חוקית"
+    }
 	},
   "screens": {
     "login": {
-      "password": "סיסמה",
       "login": "התחברות"
     }
   }

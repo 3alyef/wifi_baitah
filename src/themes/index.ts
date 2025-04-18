@@ -9,6 +9,7 @@ export interface ThemeContract {
   text: string;
   textOnPrimary: string;
   shadow: string;
+  error: string;
 }
 
 export const themes = { light, dark };

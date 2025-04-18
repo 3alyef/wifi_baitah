@@ -3,11 +3,12 @@ import { ThemeContract } from "../../../themes/index";
 
 export function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
-    container: {
+    container: {},
+    subContainer: {
       backgroundColor: theme.surface,
       borderColor: theme.primary,
       borderWidth: 1.2,
-      padding: 6,
+      padding: 4,
       borderRadius: 7,
       flexDirection: "row",
       direction: "ltr",
@@ -24,9 +25,6 @@ export function createStyle(theme: ThemeContract) {
       flexDirection: "row",
       alignItems: "center",
       height: "100%",
-    },
-    eye: {
-      padding: 4,
     },
     eyeView: {
       width: 1,
@@ -49,6 +47,11 @@ export function createStyle(theme: ThemeContract) {
     },
     clearIcon: {
       color: theme.primaryDark,
+    },
+    informationContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      columnGap: 2,
     },
   });
 }

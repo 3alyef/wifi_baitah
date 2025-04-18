@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AppNavigator from './src/navigation/AppNavigator';
-import { globalStyles } from './src/styles/globalStyles';
 import { Provider } from 'react-redux';
 import store from './src/app/store';
-//import Router from './src/services/Router/Router';
-import GlobalContextProvider, { useGlobalContext } from './src/context/GlobalContext';
+import GlobalContextProvider from './src/context/GlobalContext';
 import {
 	Keyboard,
 	Pressable,
@@ -13,21 +11,12 @@ import {
 } from 'react-native';
 
 function App(): React.JSX.Element {
-	/*const [router] = useState<Router>(new Router());
-	useEffect(() => {
-		async function startRouter() {
-			await router.init();
-		}
-		startRouter();
-	}, []);*/
 	return (
 		<Provider store={store}>
 			<GlobalContextProvider>
 				<SafeAreaView style={{ flex: 1 }} >
 					<StatusBar barStyle="light-content" backgroundColor="black" />
-					<Pressable onPress={Keyboard.dismiss} style={globalStyles.appBackground}>
-						<AppNavigator />
-					</Pressable>
+					<AppNavigator />
 				</SafeAreaView>
 			</GlobalContextProvider>
 		</Provider>

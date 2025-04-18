@@ -8,4 +8,5 @@ export default {
   text: "#FFFFFF",
   textOnPrimary: "#FFFFFF",
   shadow: "#000000",
+  error: "#CF6679",
 } as ThemeContract;

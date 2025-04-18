@@ -7,7 +7,7 @@ import { i18n, Locale } from "@/i18n";
 import TypeLocales from "@/i18n/locales/locales.type";
 import { getDictionary } from "@/i18n/library/get-dictionary";
 import getDeviceLanguage from "@/i18n/utils/getDeviceLanguage";
-
+import { direction } from "@/styles/globalStyles";
 interface PropsGlobalContextProvider {
 	children: React.ReactNode
 }
@@ -18,6 +18,7 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 	const [themeId, setThemeId] = useState<ThemeType>("dark");
 	const [theme, setTheme] = useState<ThemeContract>(darkTheme);
 	const [currentLanguage, setCurrentLanguage] = useState<Locale>("en");
+	const [direction, setDirection] = useState<direction>('ltr');
 
 	function toggleTheme() {
 		if (themeId == "dark") {
@@ -32,16 +33,17 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 	const [dictionary, setDictionary] = useState<TypeLocales | undefined>();
 
 	useEffect(() => { // Set default language of app
-		setCurrentLanguage(() => {
-			let lang: Locale = 'en';
-			for (const language of getDeviceLanguage()) {
-				if (i18n.locales.includes(language.languageCode as Locale)) {
-					lang = language.languageCode as Locale;
-					break
-				}
+		let lang: Locale = 'pt';
+		let direction: direction = 'ltr';
+		/*for (const language of getDeviceLanguage()) {
+			if (i18n.locales.includes(language.languageCode as Locale)) {
+				lang = language.languageCode as Locale;
+				direction = language.isRTL ? "rtl" : 'ltr';
+				break
 			}
-			return lang;
-		});
+		}*/
+		setCurrentLanguage(lang);
+		setDirection(direction);
 	}, [])
 
 	useEffect(() => {
@@ -57,6 +59,7 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 			theme,
 			themeId,
 			toggleTheme,
+			direction,
 			currentLanguage,
 			setCurrentLanguage,
 			dictionary

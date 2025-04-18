@@ -1,11 +1,16 @@
-import {StyleSheet} from 'react-native';
+import { ThemeContract } from "@/themes";
+import { StyleSheet } from "react-native";
 
-export const globalStyles = StyleSheet.create({
-  appBackground: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  textPrimary: {
-    color: '#333',
-  },
-});
+export type direction = "ltr" | "rtl";
+
+export default function createGlobalStyle(
+  theme: ThemeContract,
+  direction: direction
+) {
+  return StyleSheet.create({
+    appBackground: {
+      flex: 1,
+      direction,
+    },
+  });
+}
