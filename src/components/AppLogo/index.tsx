@@ -23,7 +23,8 @@ export default function AppLogo({ title }: PropsAppLogo) {
 					fillColor={theme.background}
 					fontSize={31}
 					fontWeight="bold"
-					strokeColor={theme.primary} />
+					strokeColor={theme.primary}
+					scale={1.45} />
 			</View>
 		</View>
 	)

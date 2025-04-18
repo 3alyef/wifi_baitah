@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { ThemeContract } from "../../../themes/index";
+import { direction } from "../../../styles/globalStyles";
 
 export function createStyle(theme: ThemeContract) {
   return StyleSheet.create({

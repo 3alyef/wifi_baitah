@@ -1,0 +1,16 @@
+{
+	"global": {
+		"wifi_habaitah": "Wi-Fi حبيتاه",
+		"habaitah": "حبيتاه",
+		"password": {
+			"password": "كلمة المرور",
+			"incorrect_password_entered": "تم إدخال كلمة مرور خاطئة",
+			"please_enter_a_valid_password": "يرجى إدخال كلمة مرور صحيحة"
+		}
+	},
+	"screens": {
+		"login": {
+			"login": "تسجيل الدخول"
+		}
+	}
+}

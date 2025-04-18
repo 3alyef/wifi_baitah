@@ -26,7 +26,6 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
@@ -65,6 +64,10 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>ScheherazadeNew-Regular.ttf</string>
+		<string>ScheherazadeNew-Medium.ttf</string>
+		<string>ScheherazadeNew-SemiBold.ttf</string>
+		<string>ScheherazadeNew-Bold.ttf</string>
 	</array>
 </dict>
 </plist>

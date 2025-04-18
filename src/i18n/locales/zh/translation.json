@@ -1,0 +1,16 @@
+{
+	"global": {
+		"wifi_habaitah": "Wi-Fi 哈拜塔",
+		"habaitah": "哈拜塔",
+		"password": {
+			"password": "密码",
+			"incorrect_password_entered": "输入了错误的密码",
+			"please_enter_a_valid_password": "请输入有效的密码"
+		}
+	},
+	"screens": {
+		"login": {
+			"login": "登录"
+		}
+	}
+}

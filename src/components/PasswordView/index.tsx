@@ -7,6 +7,7 @@ import BtnContainer from "../BtnContainer";
 import PressableContainer from "../PressableContainer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
+import isRTL from "@/utils/isRTL";
 
 interface PropsPasswordView {
 	password: string;
@@ -68,9 +69,11 @@ export default function PasswordView({
 					</PressableContainer>
 					<View style={styles.eyeView}></View>
 				</View>
-				<View style={styles.passwordContainer}>
+				<View style={[styles.passwordContainer, {
+					direction: isRTL(password) ? 'rtl' : 'ltr'
+				}]}>
 					<TextInput
-						style={styles.password}
+						style={[styles.password]}
 						value={password}
 						onChangeText={setPassword}
 						placeholder={global.password.password}
