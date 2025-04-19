@@ -1,5 +1,5 @@
 import { ThemeContract } from "@/themes";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
 
 export function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
@@ -8,6 +8,8 @@ export function createStyle(theme: ThemeContract) {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
+      borderTopWidth: StatusBar.currentHeight,
+      borderColor: theme.primaryDark,
     },
     Content: {
       width: "75%",

@@ -1,4 +1,4 @@
-import { AppLogo, PasswordView, V1Btn } from "@/components";
+import { AppLogo, PasswordView, SunMoonToggle, V1Btn } from "@/components";
 import { Button, GestureResponderEvent, View } from "react-native";
 import { createStyle } from "./style";
 import { useEffect, useState } from "react";
@@ -8,14 +8,16 @@ import { useAppDispatch } from "@/app/hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackNavigation } from "@/navigation/types/StackTypes";
+import { RootDrawerNavigation } from "@/navigation/types/StackTypes";
 import { cleanError } from "@/features/router/routerSlice";
+
 export default function Login() {
 	const [password, setPassword] = useState('');
 	const { theme, themeId, dictionary, toggleTheme } = useGlobalContext();
 
 	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
-	const navigation = useNavigation<RootStackNavigation>();
+
+	const navigation = useNavigation<RootDrawerNavigation>();
 
 	const dispatch = useAppDispatch();
 
@@ -47,8 +49,7 @@ export default function Login() {
 	return (
 		<View style={styles.Container}>
 			<View style={styles.Content}>
-
-				<Button color={theme.primaryDark} title={themeId} onPress={toggleTheme} />
+				<SunMoonToggle onPress={toggleTheme} />
 				<AppLogo title={global.habaitah} />
 				<PasswordView
 					password={password}

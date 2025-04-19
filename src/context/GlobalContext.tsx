@@ -35,13 +35,13 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 	useEffect(() => { // Set default language of app
 		let lang: Locale = 'en';
 		let direction: direction = 'ltr';
-		/*for (const language of getDeviceLanguage()) {
+		for (const language of getDeviceLanguage()) {
 			if (i18n.locales.includes(language.languageCode as Locale)) {
 				lang = language.languageCode as Locale;
 				direction = language.isRTL ? "rtl" : 'ltr';
 				break
 			}
-		}*/
+		}
 		setCurrentLanguage(lang);
 		setDirection(direction);
 	}, [])
