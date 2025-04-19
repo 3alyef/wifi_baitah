@@ -4,8 +4,10 @@ import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import createStyle from "./style";
-import { ScrollView, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import SunMoonToggle from "../SunMoonToggle";
+
+import { LogoStatus, DataView } from "@/components";
 
 export default function CustomDrawerContent(props: DrawerContentComponentProps) {
 	const navigation = useNavigation<RootDrawerNavigation>();
@@ -16,8 +18,12 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 			{...props}
 			style={styles.scroll}>
 			<View style={styles.sectionOne}>
-				<SunMoonToggle onPress={toggleTheme} />
+				<LogoStatus size={125} />
+				<View style={styles.themeToggleContainer}>
+					<SunMoonToggle onPress={toggleTheme} size={30} />
+				</View>
 			</View>
+			<DataView />
 			<DrawerItem
 				label="Status"
 				labelStyle={styles.label}

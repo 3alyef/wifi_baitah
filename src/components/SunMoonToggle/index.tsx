@@ -4,7 +4,12 @@ import { Animated, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import createStyle from './styles';
 
-export default function SunMoonToggle({ onPress }: { onPress: () => void }) {
+interface PropsSunMoonToggle {
+	onPress: () => void;
+	size: number
+}
+
+export default function SunMoonToggle({ onPress, size }: PropsSunMoonToggle) {
 	const [isDay, setIsDay] = useState(true);
 	// Variável de estado para alternar entre sol e lua
 	const scale = useRef(new Animated.Value(1)).current; // Controle de animação para suavizar a troca
@@ -34,9 +39,9 @@ export default function SunMoonToggle({ onPress }: { onPress: () => void }) {
 				<Animated.View style={{ transform: [{ scale }] }}>
 					{/* Alterando o ícone dependendo do estado */}
 					{isDay ? (
-						<Icon name="sunny" size={40} style={styles.icon} />
+						<Icon name="sunny" size={size} style={styles.icon} />
 					) : (
-						<Icon name="moon" size={40} style={styles.icon} />
+						<Icon name="moon" size={size} style={styles.icon} />
 					)}
 				</Animated.View>
 			</TouchableOpacity>

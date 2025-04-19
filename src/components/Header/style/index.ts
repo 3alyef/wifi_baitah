@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 export function createStyle(
   theme: ThemeContract,
-  paddingStatusBar: number | undefined
+  borderStatusBar: number | undefined
 ) {
   return StyleSheet.create({
     container: {
@@ -13,8 +13,9 @@ export function createStyle(
       justifyContent: "space-between",
       backgroundColor: theme.surface,
       paddingHorizontal: 16,
-      paddingTop: paddingStatusBar ? 12 + paddingStatusBar : 12,
-      paddingBottom: 12,
+      borderColor: theme.shadow + 30,
+      borderTopWidth: borderStatusBar,
+      paddingVertical: 12,
       minHeight: 72,
       shadowColor: theme.shadow,
       shadowOffset: { width: 0, height: 4 },

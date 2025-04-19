@@ -1,4 +1,4 @@
-import { Button, Image, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import wifiWhite from "../../assets/wifi-white.png";
 import { createStyle } from "./style";
 import { useGlobalContext } from "@/context/GlobalContext";

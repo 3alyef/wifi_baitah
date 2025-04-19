@@ -7,3 +7,4 @@ export { default as BtnContainer } from "./BtnContainer";
 export { default as OutlinedText } from "./OutlinedText";
 export { default as CustomDrawerContent } from "./CustomDrawerContent";
 export { default as SunMoonToggle } from "./SunMoonToggle";
+export { default as LogoStatus } from "./LogoStatus";
