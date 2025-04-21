@@ -5,20 +5,14 @@ export default function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.background,
-      padding: 10,
-    },
-    subContainer: {
-      flex: 1,
-      backgroundColor: theme.surfaceAlt + 10,
-      borderRadius: Math.PI * Math.PI,
-      padding: 12,
+      backgroundColor: theme.surfaceAlt,
+      borderRadius: Math.PI,
+      padding: Math.PI * Math.PI,
       shadowColor: theme.shadow,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.2,
       shadowRadius: 4,
-      //elevation: 5, // para Android
-      rowGap: 5,
+      elevation: 5, // para Android
     },
   });
 }
