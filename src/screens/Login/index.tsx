@@ -49,7 +49,7 @@ export default function Login() {
 	return (
 		<View style={styles.Container}>
 			<View style={styles.Content}>
-				<SunMoonToggle onPress={toggleTheme} />
+				<SunMoonToggle onPress={toggleTheme} size={40} />
 				<AppLogo title={global.habaitah} />
 				<PasswordView
 					password={password}

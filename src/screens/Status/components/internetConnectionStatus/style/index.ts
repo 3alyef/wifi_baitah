@@ -6,12 +6,5 @@ export default function createStyle(theme: ThemeContract) {
     container: {
       direction: "ltr",
     },
-    statusContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
-    icon: {
-      color: theme.primary,
-    },
   });
 }

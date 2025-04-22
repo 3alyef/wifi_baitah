@@ -19,8 +19,9 @@ export default function PasswordView({
 }: PropsPasswordView) {
 	const isError = useSelector((state: RootState) => state.router.error);
 	const [show, setShow] = useState(true);
+	const [onFocus, setOnFocus] = useState(false);
 	const { theme, dictionary } = useGlobalContext();
-	const styles = createStyle(theme);
+	const styles = createStyle(theme, onFocus);
 	const errorAnim = useRef(new Animated.Value(0)).current;
 	const [errorMessage, setErrorMessage] = useState('');
 	useEffect(() => {
@@ -79,6 +80,8 @@ export default function PasswordView({
 						placeholder={global.password.password}
 						placeholderTextColor={theme.primary + "77"}
 						secureTextEntry={!show}
+						onFocus={() => setOnFocus(true)}
+						onBlur={() => setOnFocus(false)}
 					/>
 					{password.length > 0 && (
 						<BtnContainer onPress={() => setPassword("")}>

@@ -1,15 +1,14 @@
 import { StyleSheet } from "react-native";
 import { ThemeContract } from "../../../themes/index";
-import { direction } from "../../../styles/globalStyles";
 
-export function createStyle(theme: ThemeContract) {
+export function createStyle(theme: ThemeContract, onFocus: boolean) {
   return StyleSheet.create({
     container: {
       width: "100%",
     },
     subContainer: {
       backgroundColor: theme.surface,
-      borderColor: theme.primary,
+      borderColor: onFocus ? theme.primaryDark : theme.primary,
       borderWidth: 1.2,
       padding: 4,
       borderRadius: 7,
