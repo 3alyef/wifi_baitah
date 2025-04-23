@@ -1,5 +1,5 @@
 import { AppLogo, PasswordView, SunMoonToggle, V1Btn } from "@/components";
-import { Button, GestureResponderEvent, View } from "react-native";
+import { GestureResponderEvent, Text, View } from "react-native";
 import { createStyle } from "./style";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
@@ -13,9 +13,10 @@ import { cleanError } from "@/features/router/routerSlice";
 
 export default function Login() {
 	const [password, setPassword] = useState('');
-	const { theme, themeId, dictionary, toggleTheme } = useGlobalContext();
+	const { theme, dictionary, toggleTheme } = useGlobalContext();
 
 	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
+	const cookie = useSelector((state: RootState) => state.router.cookie);
 
 	const navigation = useNavigation<RootDrawerNavigation>();
 
@@ -55,6 +56,9 @@ export default function Login() {
 					password={password}
 					setPassword={setPassword} />
 				<V1Btn text={login.login} handlePress={onPressLogin} />
+				<Text style={{ color: theme.text }}>
+					{cookie}
+				</Text>
 			</View>
 		</View>
 	)

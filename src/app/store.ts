@@ -1,12 +1,17 @@
-import { routerReducer } from "@/features/router";
 import { configureStore } from "@reduxjs/toolkit";
+import { persistStore } from "redux-persist";
+import rootReducer from "./reducers/rootReducer";
 
 const store = configureStore({
-  reducer: {
-    router: routerReducer,
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({
+      serializableCheck: false, // necessário com redux-persist
+    });
   },
 });
 
+export const persistor = persistStore(store);
 export default store;
 
 export type RootState = ReturnType<typeof store.getState>;

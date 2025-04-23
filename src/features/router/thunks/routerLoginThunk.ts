@@ -15,8 +15,7 @@ export const routerLoginThunk = createAsyncThunk<
     const router = new Router();
     await router.defineBaseURL();
     try {
-      await router.routerLogin(password);
-
+      await router.routerAuthWithPassword(password);
       return {
         baseURL: router.getBaseURL(),
         cookie: router.getCookie(),

@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RouterState, routerError } from "./types";
-import { routerLoginThunk, routerNavigateThunk } from "./thunks";
+import {
+  routerAuthThunk,
+  routerLoginThunk,
+  routerNavigateThunk,
+} from "./thunks";
 
 const initialState: RouterState = {
   baseURL: "", // url router
@@ -49,7 +53,10 @@ const routerSlice = createSlice({
       })
       .addCase(routerNavigateThunk.pending, (state, action) => {})
       .addCase(routerNavigateThunk.fulfilled, (state, action) => {})
-      .addCase(routerNavigateThunk.rejected, (state, action) => {});
+      .addCase(routerNavigateThunk.rejected, (state, action) => {})
+      .addCase(routerAuthThunk.pending, (state, action) => {})
+      .addCase(routerAuthThunk.fulfilled, (state, action) => {})
+      .addCase(routerAuthThunk.rejected, (state, action) => {});
   },
 });
 
