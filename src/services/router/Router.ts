@@ -1,12 +1,11 @@
 import { encryptBase64 } from "@/utils/base64";
 import { NetworkInfo } from "react-native-network-info";
-import CookieManager, {
-  Cookie as CookieType,
-} from "@react-native-cookies/cookies";
+import CookieManager from "@react-native-cookies/cookies";
 import {
   errorMsg,
   routerError,
 } from "@/features/router/types/routerErrorTypes";
+import axios from "axios";
 
 interface RouterCookies {
   httpOnly: boolean; // false
@@ -77,21 +76,8 @@ export default class Router {
 
       this.Ecos_pw = cookies;
 
-      const rs = await fetch(
-        `${
-          this.baseURL
-        }/goform/getStatus?random=${Math.random()}&modules=internetStatus%2CdeviceStatistics%2CsystemInfo%2CwanAdvCfg`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "*/*",
-            Connection: "keep-alive",
-          },
-          credentials: "include",
-        }
-      );
+      await this.getStatus(this.getCookie());
 
-      console.log("Esta aqui: ", rs.bodyUsed);
       if (!cookies.ecos_pw) {
         if (response.url.includes("login.html")) {
           throw {
@@ -113,49 +99,26 @@ export default class Router {
     try {
       console.log("Cookie: ", cookieHeader);
 
-      const response = await fetch(
+      const response = await axios.get(
         `${
           this.baseURL
         }/goform/getStatus?random=${Math.random()}&modules=internetStatus%2CdeviceStatistics%2CsystemInfo%2CwanAdvCfg`,
         {
-          method: "GET",
           headers: {
             Accept: "*/*",
+            Cookie: cookieHeader, //"bLanguage=pt; ecos_pw=ZWxldGVsOTM2OQ==ert:language=cn",
+            "Accept-Encoding": "gzip, deflate",
             Connection: "keep-alive",
-            Cookie: "bLanguage=pt; ecos_pw=ZWxldGVsOTM2OQ==ert:language=cn",
           },
+          withCredentials: true,
         }
       );
 
-      console.log("Esta aqui: ", response);
+      console.log("Esta aqui: ", response.data);
     } catch (err) {
       const error = err as errorMsg;
       console.log("Error trying to get status:", error.message);
       throw error;
     }
-  }
-
-  private parseCookiesFromHeader(header: string): RouterCookies[] {
-    const domain = this.baseURL.replace(/^https?:\/\//, "");
-
-    return header.split(";").map((entry) => {
-      const [name, ...rest] = entry.trim().split("=");
-      /*return {
-        name,
-        value: rest.join("="),
-        domain,
-        path: "/",
-        version: "1",
-      };*/
-
-      return {
-        domain: null,
-        httpOnly: false,
-        name,
-        path: null,
-        secure: false,
-        value: rest.join("="),
-      };
-    });
   }
 }
