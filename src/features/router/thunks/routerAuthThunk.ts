@@ -1,14 +1,13 @@
 import Router from "@/services/router/Router";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { rejectValueType } from "../types";
+import { errorMsg, rejectValueType } from "../types";
 
 interface args {
-  cookie: string;
-  baseURL: string;
+  passwordB64: string;
 }
 
 export const routerAuthThunk = createAsyncThunk<
-  { isLogged: boolean },
+  { isLoggedIn: boolean },
   args,
   {
     rejectValue: rejectValueType;
@@ -16,18 +15,19 @@ export const routerAuthThunk = createAsyncThunk<
 >(
   // o asyncThunk lida com operações assíncronas
   "router/auth",
-  async ({ cookie, baseURL }, { rejectWithValue }) => {
+  async ({ passwordB64 }, { rejectWithValue }) => {
     const router = new Router();
-    await router.defineBaseURL();
-    if (router.getBaseURL() != baseURL) {
+    await router.init();
+    try {
+      await router.validateCredentials(passwordB64);
       return {
-        isLogged: false,
+        isLoggedIn: true,
       };
+    } catch (err) {
+      const error = err as errorMsg;
+      return rejectWithValue({
+        message: error.message,
+      });
     }
-
-    await router.getStatus(cookie);
-    return {
-      isLogged: true,
-    };
   }
 );

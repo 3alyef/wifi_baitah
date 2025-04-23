@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { errorMsg, rejectValueType } from "../types";
 
 export const routerLoginThunk = createAsyncThunk<
-  { baseURL: string; cookie: string },
+  { /*baseURL: string; cookie: string*/ passwordB64: string },
   string,
   {
     rejectValue: rejectValueType;
@@ -13,12 +13,11 @@ export const routerLoginThunk = createAsyncThunk<
   "router/login",
   async (password: string, { rejectWithValue }) => {
     const router = new Router();
-    await router.defineBaseURL();
+    await router.init();
     try {
       await router.routerAuthWithPassword(password);
       return {
-        baseURL: router.getBaseURL(),
-        cookie: router.getCookie(),
+        passwordB64: router.getPasswordB64(),
       }; // valor que será salvo no state pelo fulfilled
     } catch (err) {
       const error = err as errorMsg;

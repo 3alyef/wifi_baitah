@@ -16,7 +16,7 @@ export default function Login() {
 	const { theme, dictionary, toggleTheme } = useGlobalContext();
 
 	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
-	const cookie = useSelector((state: RootState) => state.router.cookie);
+	const passwordB64 = useSelector((state: RootState) => state.router.passwordB64);
 
 	const navigation = useNavigation<RootDrawerNavigation>();
 
@@ -57,7 +57,7 @@ export default function Login() {
 					setPassword={setPassword} />
 				<V1Btn text={login.login} handlePress={onPressLogin} />
 				<Text style={{ color: theme.text }}>
-					{cookie}
+					{passwordB64}
 				</Text>
 			</View>
 		</View>

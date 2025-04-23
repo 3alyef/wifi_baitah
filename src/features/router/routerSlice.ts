@@ -7,8 +7,9 @@ import {
 } from "./thunks";
 
 const initialState: RouterState = {
-  baseURL: "", // url router
-  cookie: "",
+  //baseURL: "", // url router
+  //cookie: "",
+  passwordB64: "",
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -20,8 +21,8 @@ const routerSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.isLoggedIn = false;
-      state.cookie = "";
-      state.baseURL = "";
+      //state.cookie = "";
+      state.passwordB64 = "";
       state.isLoading = false;
       state.error = null;
     },
@@ -40,23 +41,33 @@ const routerSlice = createSlice({
         // processo finalizado com sucesso
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.cookie = action.payload.cookie;
-        state.baseURL = action.payload.baseURL;
+        state.passwordB64 = action.payload.passwordB64;
       })
       .addCase(routerLoginThunk.rejected, (state, action) => {
         // falha
         state.isLoading = false;
         state.isLoggedIn = false;
-        state.cookie = "";
+        state.error =
+          (action.payload?.message as routerError) || routerError.UNKNOWN_ERROR;
+      })
+      .addCase(routerAuthThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(routerAuthThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isLoggedIn = action.payload.isLoggedIn;
+      })
+      .addCase(routerAuthThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.passwordB64 = "";
         state.error =
           (action.payload?.message as routerError) || routerError.UNKNOWN_ERROR;
       })
       .addCase(routerNavigateThunk.pending, (state, action) => {})
       .addCase(routerNavigateThunk.fulfilled, (state, action) => {})
-      .addCase(routerNavigateThunk.rejected, (state, action) => {})
-      .addCase(routerAuthThunk.pending, (state, action) => {})
-      .addCase(routerAuthThunk.fulfilled, (state, action) => {})
-      .addCase(routerAuthThunk.rejected, (state, action) => {});
+      .addCase(routerNavigateThunk.rejected, (state, action) => {});
   },
 });
 

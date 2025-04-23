@@ -22,13 +22,24 @@ interface Ecos_pw {
 export default class Router {
   private baseURL: string;
   private Ecos_pw: Ecos_pw;
+  private passwordB64: string;
 
   constructor() {
     this.baseURL = "";
     this.Ecos_pw = {};
+    this.passwordB64 = "";
+    this.defineBaseURL();
   }
 
-  async defineBaseURL() {
+  async init() {
+    await this.defineBaseURL();
+  }
+
+  async cleanCookies() {
+    await CookieManager.clearAll();
+  }
+
+  private async defineBaseURL() {
     try {
       const ip = await NetworkInfo.getGatewayIPAddress();
       if (ip) {
@@ -52,9 +63,24 @@ export default class Router {
     };
   }
 
+  getPasswordB64() {
+    return this.passwordB64;
+  }
+
   async routerAuthWithPassword(password: string) {
     try {
-      await CookieManager.clearAll();
+      await this.cleanCookies();
+      this.validateCredentials(encryptBase64(password));
+    } catch (err) {
+      const error = err as errorMsg;
+      console.log("Error trying to log in:", error.message);
+      throw error;
+    }
+  }
+
+  async validateCredentials(passwordB64: string) {
+    try {
+      this.passwordB64 = passwordB64;
 
       const response = await fetch(`${this.baseURL}/login/Auth`, {
         method: "POST",
@@ -67,17 +93,14 @@ export default class Router {
           Cookie: "bLanguage=pt",
         },
         body: new URLSearchParams({
-          password: encryptBase64(password),
+          password: this.passwordB64,
         }).toString(),
       });
 
       const cookies = (await CookieManager.get(this.baseURL)) as Ecos_pw;
-      console.log("from server: ", cookies);
 
       this.Ecos_pw = cookies;
-
-      await this.getStatus(this.getCookie());
-
+      console.log("Aqui está: ", `password: { ${this.passwordB64}}`, response);
       if (!cookies.ecos_pw) {
         if (response.url.includes("login.html")) {
           throw {
@@ -90,28 +113,26 @@ export default class Router {
       }
     } catch (err) {
       const error = err as errorMsg;
-      console.log("Error trying to log in:", error.message);
+      console.log("Error trying to validate credentials:", error.message);
       throw error;
     }
   }
 
-  async getStatus(cookieHeader: string) {
+  async getStatus() {
     try {
-      console.log("Cookie: ", cookieHeader);
-
       const response = await axios.get(
         `${
           this.baseURL
-        }/goform/getStatus?random=${Math.random()}&modules=internetStatus%2CdeviceStatistics%2CsystemInfo%2CwanAdvCfg`,
-        {
-          headers: {
-            Accept: "*/*",
-            Cookie: cookieHeader, //"bLanguage=pt; ecos_pw=ZWxldGVsOTM2OQ==ert:language=cn",
-            "Accept-Encoding": "gzip, deflate",
-            Connection: "keep-alive",
-          },
-          withCredentials: true,
-        }
+        }/goform/getStatus?random=${Math.random()}&modules=internetStatus%2CdeviceStatistics%2CsystemInfo%2CwanAdvCfg`
+        //{
+        //headers: {
+        //Accept: "*/*",
+        //Cookie: cookieHeader,
+        //"Accept-Encoding": "gzip, deflate",
+        //Connection: "keep-alive",
+        //},
+        //withCredentials: true,
+        //}
       );
 
       console.log("Esta aqui: ", response.data);
