@@ -1,12 +1,8 @@
 import { encryptBase64 } from "@/utils/base64";
-import { NetworkInfo } from "react-native-network-info";
 import CookieManager from "@react-native-cookies/cookies";
-import {
-  errorMsg,
-  routerError,
-} from "@/features/router/types/routerErrorTypes";
-import axios from "axios";
+import { errorMsg, authError } from "@/features/auth/types/authErrorTypes";
 import RouterUtils from "./utils/RouterUtils";
+import { GetStatus } from "./utils/AxiosController/types/AxiosControllerTypes";
 
 interface RouterCookies {
   httpOnly: boolean; // false
@@ -64,11 +60,11 @@ export default class Router extends RouterUtils {
       if (!cookies.ecos_pw) {
         if (response.url.includes("login.html")) {
           throw {
-            message: routerError.PASSWORD_INCORRECT,
+            message: authError.PASSWORD_INCORRECT,
           };
         }
         throw {
-          message: routerError.SERVER_ERROR,
+          message: authError.SERVER_ERROR,
         };
       }
     } catch (err) {
@@ -76,5 +72,9 @@ export default class Router extends RouterUtils {
       console.log("Error trying to validate credentials:", error.message);
       throw error;
     }
+  }
+
+  async getStatus() {
+    return await this.utilsStatus.getStatus(this.getBaseURL());
   }
 }

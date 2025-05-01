@@ -1,14 +1,16 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import { routerReducer } from "@/features/router";
+import { authReducer } from "@/features/auth";
 import type { Reducer } from "redux";
-import routerPersistConfig from "../persistConfig";
+import authPersistConfig from "../persistConfig";
+import { statusReducer } from "@/features/status";
 
 const rootReducer = combineReducers({
-  router: persistReducer<ReturnType<typeof routerReducer>>(
-    routerPersistConfig,
-    routerReducer
-  ) as unknown as Reducer<ReturnType<typeof routerReducer>>,
+  auth: persistReducer<ReturnType<typeof authReducer>>(
+    authPersistConfig,
+    authReducer
+  ) as unknown as Reducer<ReturnType<typeof authReducer>>,
+  status: statusReducer as unknown as Reducer<ReturnType<typeof statusReducer>>,
 });
 
 export default rootReducer;

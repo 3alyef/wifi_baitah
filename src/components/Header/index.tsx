@@ -4,7 +4,7 @@ import { createStyle } from "./style";
 import { useGlobalContext } from "@/context/GlobalContext";
 import { useAppDispatch } from "@/app/hooks";
 import PressableContainer from "../PressableContainer";
-import { logout } from "@/features/router/routerSlice";
+import { logout } from "@/features/auth/authSlice";
 import { useNavigation } from "@react-navigation/native";
 import { RootDrawerNavigation } from "@/navigation/types/StackTypes";
 

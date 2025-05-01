@@ -1,8 +1,7 @@
 import CookieManager from "@react-native-cookies/cookies";
 import AxiosController from "./AxiosController/AxiosController";
 import { NetworkInfo } from "react-native-network-info";
-import { routerError } from "@/features/router/types";
-import { AxiosInstance } from "axios";
+import { authError } from "@/features/auth/types";
 
 interface RouterCookies {
   httpOnly: boolean; // false
@@ -17,7 +16,7 @@ export interface Ecos_pw {
 }
 
 export default abstract class RouterUtils {
-  protected utilsStatus: AxiosController;
+  public utilsStatus: AxiosController;
   private baseURL: string;
   private Ecos_pw: Ecos_pw;
   private passwordB64: string;
@@ -37,13 +36,13 @@ export default abstract class RouterUtils {
     if (cookie.ecos_pw) {
       return `bLanguage=pt; ecos_pw=${cookie.ecos_pw.value}`;
     }
-    console.error("That: ", this.Ecos_pw, routerError.COOKIE_UNDEFINED);
+    console.error("That: ", this.Ecos_pw, authError.COOKIE_UNDEFINED);
     throw {
-      message: routerError.COOKIE_UNDEFINED,
+      message: authError.COOKIE_UNDEFINED,
     };
   }
 
-  getPasswordB64() {
+  public getPasswordB64() {
     return this.passwordB64;
   }
 

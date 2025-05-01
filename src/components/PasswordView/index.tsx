@@ -17,7 +17,7 @@ export default function PasswordView({
 	password,
 	setPassword
 }: PropsPasswordView) {
-	const isError = useSelector((state: RootState) => state.router.error);
+	const isError = useSelector((state: RootState) => state.auth.error);
 	const [show, setShow] = useState(true);
 	const [onFocus, setOnFocus] = useState(false);
 	const { theme, dictionary } = useGlobalContext();

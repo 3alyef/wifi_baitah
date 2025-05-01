@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const routerPersistConfig = {
-  key: "router",
+const authPersistConfig = {
+  key: "auth",
   storage: AsyncStorage,
   whitelist: ["passwordB64"],
 };
 
-export default routerPersistConfig;
+export default authPersistConfig;

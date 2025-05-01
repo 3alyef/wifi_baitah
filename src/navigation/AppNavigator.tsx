@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
 	const { theme, direction } = useGlobalContext();
-	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
+	const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
 	const globalStyle = createGlobalStyle(theme, direction);
 	return (

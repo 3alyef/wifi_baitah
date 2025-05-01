@@ -3,27 +3,27 @@ import { GestureResponderEvent, Text, View } from "react-native";
 import { createStyle } from "./style";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { routerLoginThunk } from "@/features/router/thunks/routerLoginThunk";
+import { authLoginThunk } from "@/features/auth/thunks/authLoginThunk";
 import { useAppDispatch } from "@/app/hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { useNavigation } from "@react-navigation/native";
 import { RootDrawerNavigation } from "@/navigation/types/StackTypes";
-import { cleanError } from "@/features/router/routerSlice";
+import { cleanError } from "@/features/auth/authSlice";
 
 export default function Login() {
 	const [password, setPassword] = useState('');
 	const { theme, dictionary, toggleTheme } = useGlobalContext();
 
-	const isLoggedIn = useSelector((state: RootState) => state.router.isLoggedIn);
-	const passwordB64 = useSelector((state: RootState) => state.router.passwordB64);
+	const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+	const passwordB64 = useSelector((state: RootState) => state.auth.passwordB64);
 
 	const navigation = useNavigation<RootDrawerNavigation>();
 
 	const dispatch = useAppDispatch();
 
 	const handleLogin = (password: string) => {
-		dispatch(routerLoginThunk(password));
+		dispatch(authLoginThunk(password));
 	};
 
 	function onPressLogin(event: GestureResponderEvent) {
