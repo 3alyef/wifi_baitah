@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 export default function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
     container: {
-      flex: 1,
       backgroundColor: theme.surfaceAlt,
       borderRadius: Math.PI,
       padding: Math.PI * Math.PI,

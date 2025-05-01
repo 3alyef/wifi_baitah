@@ -77,4 +77,12 @@ export default class Router extends RouterUtils {
   async getStatus() {
     return await this.utilsStatus.getStatus(this.getBaseURL());
   }
+
+  async getInternetStatus() {
+    return await this.utilsStatus.getInternetStatus(this.getBaseURL());
+  }
+
+  async getIsIPConflict() {
+    return await this.utilsStatus.isIPConflict(this.getBaseURL());
+  }
 }

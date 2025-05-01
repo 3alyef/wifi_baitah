@@ -12,12 +12,14 @@ import DrawerNavigator from "./DrawerNavigator";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-	const { theme, direction } = useGlobalContext();
+	const { theme } = useGlobalContext();
 	const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-	const globalStyle = createGlobalStyle(theme, direction);
+	const globalStyle = createGlobalStyle(theme);
 	return (
-		<Pressable onPress={Keyboard.dismiss} style={globalStyle.appBackground}>
+		<Pressable
+			onPress={Keyboard.dismiss}
+			style={globalStyle.appBackground}>
 			<NavigationContainer>
 				{isLoggedIn ? <DrawerNavigator /> : (
 					<Stack.Navigator initialRouteName={"Login"}>

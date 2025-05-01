@@ -7,17 +7,15 @@ import {
 import { RootState } from '@/app/store';
 import { useAppDispatch } from './app/hooks';
 import { authThunk } from './features/auth/thunks/authThunk';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Router from './services/router/Router';
-import { GetStatus } from './services/router/utils/AxiosController/types/AxiosControllerTypes';
-import { statusThunk } from './features/status/thunks';
+import { statusInternetStatusThunk, statusIsIPConflict, statusThunk } from './features/status/thunks';
 
 export default function AppEntry() {
 	const dispatch = useAppDispatch();
 	const passwordB64 = useSelector((state: RootState) => state.auth.passwordB64);
 	const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn)
 
-	const [status, setStatus] = useState<GetStatus | undefined>()
 	const router = new Router();
 	router.init();
 
@@ -30,11 +28,16 @@ export default function AppEntry() {
 
 		if (isLoggedIn) {
 			const intervalo = setInterval(() => {
-				dispatch(statusThunk())
-				// router.initMonitoring()
-			},
-				2000);
-			return () => clearInterval(intervalo);
+				dispatch(statusThunk());
+				dispatch(statusIsIPConflict());
+			}, 4500);
+			const intervalo2 = setInterval(() => {
+				dispatch(statusInternetStatusThunk());
+			}, 3000);
+			return () => {
+				clearInterval(intervalo);
+				clearInterval(intervalo2)
+			};
 		}
 	}, [isLoggedIn]);
 
@@ -45,7 +48,6 @@ export default function AppEntry() {
 				backgroundColor="transparent"
 				barStyle="light-content"
 			/>
-
 			<AppNavigator />
 		</SafeAreaView>
 	)

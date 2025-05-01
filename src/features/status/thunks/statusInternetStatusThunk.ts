@@ -17,10 +17,18 @@ export const statusInternetStatusThunk = createAsyncThunk<
   }
 >(
   // o asyncThunk lida com operações assíncronas
-  "router/status",
+  "router/internetStatus",
   async (_, { rejectWithValue }) => {
     const router = new Router();
     await router.init();
-    return { data: undefined };
+    try {
+      const internetStatus = await router.getInternetStatus();
+      return { data: internetStatus };
+    } catch (err) {
+      const error = err as errorMsg;
+      return rejectWithValue({
+        message: error.message,
+      });
+    }
   }
 );

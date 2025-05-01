@@ -16,7 +16,7 @@ export interface Ecos_pw {
 }
 
 export default abstract class RouterUtils {
-  public utilsStatus: AxiosController;
+  protected utilsStatus: AxiosController;
   private baseURL: string;
   private Ecos_pw: Ecos_pw;
   private passwordB64: string;

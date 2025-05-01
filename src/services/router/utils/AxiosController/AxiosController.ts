@@ -41,11 +41,15 @@ export default class AxiosController {
   async getInternetStatus(baseURL: string): Promise<InternetStatus> {
     try {
       const response = await this.client.get(
-        `${baseURL}/goform/getStatus?random=${Math.random()}&modules=internetStatus`
+        `${baseURL}/goform/getStatus?${Math.random()}&modules=internetStatus`
+        // random=
       );
       if (response.data) {
-        console.log("Esta aqui: ", response.data);
-        return response.data as InternetStatus;
+        const data = response.data as {
+          internetStatus: InternetStatus;
+        };
+
+        return data.internetStatus;
       } else {
         throw {
           message: "Erro na requisição",
@@ -70,10 +74,11 @@ export default class AxiosController {
       if (!response.ok)
         throw new Error(`HTTP error! status: ${response.status}`);
 
-      const data = await response.json();
+      const data: {
+        internetStatus: IPConflict;
+      } = await response.json();
 
-      console.log("ip config: ", data);
-      return data as IPConflict;
+      return data.internetStatus as IPConflict;
     } catch (err) {
       const error = err as errorMsg;
       console.log("Error IPConfigError:", error.message);

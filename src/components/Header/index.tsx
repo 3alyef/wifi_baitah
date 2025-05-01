@@ -12,12 +12,12 @@ import { RootDrawerNavigation } from "@/navigation/types/StackTypes";
 export default function Header() {
 	const { dictionary, theme } = useGlobalContext();
 
-	if (!dictionary) return null;
+
 
 	const navigation = useNavigation<RootDrawerNavigation>();
 	const styles = createStyle(theme, StatusBar.currentHeight);
 	const dispatch = useAppDispatch();
-
+	if (!dictionary) return null;
 	return (
 		<View style={styles.container}>
 			<PressableContainer onPress={() => navigation.openDrawer()}>

@@ -6,7 +6,7 @@ export default function createStyle(theme: ThemeContract) {
     container: {
       flex: 1,
       backgroundColor: theme.background,
-      padding: 10,
+      /*paddingVertical: 10,*/ padding: 10,
     },
     subContainer: {
       flex: 1,

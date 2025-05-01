@@ -3,13 +3,11 @@ import { RootDrawerParamList } from "../types/StackTypes";
 import { Status } from "@/screens";
 import { CustomDrawerContent, Header } from "@/components";
 import { useGlobalContext } from "@/context/GlobalContext";
-import createStyle from "@/components/CustomDrawerContent/style";
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function DrawerNavigator() {
-	const { theme } = useGlobalContext();
-	const styles = createStyle(theme);
+	const { direction } = useGlobalContext();
 	return (
 		<Drawer.Navigator
 			initialRouteName={"Status"}
@@ -17,14 +15,17 @@ export default function DrawerNavigator() {
 			screenOptions={{
 				header: () => <Header />,
 				drawerPosition: "left",
-				//drawerStyle: styles.container
+				sceneStyle: {
+					flex: 1,
+					direction: direction,
+				}
 			}}>
 			<Drawer.Screen
 				name="Status"
 				component={Status}
 
 			/>
-		</Drawer.Navigator>
+		</Drawer.Navigator >
 	)
 }
 

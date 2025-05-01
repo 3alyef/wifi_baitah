@@ -3,14 +3,10 @@ import { StyleSheet } from "react-native";
 
 export type direction = "ltr" | "rtl";
 
-export default function createGlobalStyle(
-  theme: ThemeContract,
-  direction: direction
-) {
+export default function createGlobalStyle(theme: ThemeContract) {
   return StyleSheet.create({
     appBackground: {
       flex: 1,
-      direction,
     },
   });
 }
