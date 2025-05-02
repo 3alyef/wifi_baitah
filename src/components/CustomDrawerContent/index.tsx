@@ -4,26 +4,35 @@ import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import createStyle from "./style";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import SunMoonToggle from "../SunMoonToggle";
 
 import { LogoStatus, DataView } from "@/components";
+import { useState } from "react";
 
 export default function CustomDrawerContent(props: DrawerContentComponentProps) {
 	const navigation = useNavigation<RootDrawerNavigation>();
 	const { theme, toggleTheme } = useGlobalContext();
 	const styles = createStyle(theme);
+
 	return (
 		<ScrollView
 			{...props}
-			style={styles.scroll}>
-			<View style={styles.sectionOne}>
-				<LogoStatus size={125} />
-				<View style={styles.themeToggleContainer}>
-					<SunMoonToggle onPress={toggleTheme} size={30} />
+			style={styles.scroll}
+			contentContainerStyle={styles.scrollContent}
+			keyboardShouldPersistTaps="handled">
+			<TouchableOpacity
+				activeOpacity={0.95}
+				onPress={() => { }} >
+				<View style={styles.sectionOne} >
+					<LogoStatus size={125} />
+					<View style={styles.themeToggleContainer}>
+						<SunMoonToggle onPress={toggleTheme} size={30} />
+					</View>
 				</View>
-			</View>
-			<DataView />
+			</TouchableOpacity>
+
+
 			<DrawerItem
 				label="Status"
 				labelStyle={styles.label}
@@ -32,6 +41,12 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 				}}
 				onPress={() => navigation.navigate('Status')}
 			/>
+
+			<TouchableOpacity
+				activeOpacity={1}
+				style={styles.dataViewContainer}>
+				<DataView />
+			</TouchableOpacity>
 		</ScrollView>
 	)
 }

@@ -5,6 +5,13 @@ export default function createStyle(theme: ThemeContract) {
   return StyleSheet.create({
     scroll: {
       backgroundColor: theme.surface,
+      flex: 1,
+    },
+    scrollContent: {
+      justifyContent: "center",
+    },
+    dataViewContainer: {
+      flex: 1,
     },
     sectionOne: {
       paddingTop: StatusBar.currentHeight,
@@ -12,7 +19,7 @@ export default function createStyle(theme: ThemeContract) {
       flexDirection: "row",
       direction: "ltr",
       backgroundColor: theme.primaryDark,
-      minHeight: "25%",
+      minHeight: "20%",
       alignItems: "center",
       justifyContent: "space-between",
     },

@@ -27,16 +27,19 @@ export default function AppEntry() {
 		};
 
 		if (isLoggedIn) {
-			const intervalo = setInterval(() => {
+			const statusMonitor = setInterval(() => {
 				dispatch(statusThunk());
-				dispatch(statusIsIPConflict());
 			}, 4500);
-			const intervalo2 = setInterval(() => {
+			const iternetStatusMonitor = setInterval(() => {
 				dispatch(statusInternetStatusThunk());
-			}, 3000);
+			}, 2500);
+			const isIPConflictMonitor = setInterval(() => {
+				dispatch(statusIsIPConflict());
+			}, 2000)
 			return () => {
-				clearInterval(intervalo);
-				clearInterval(intervalo2)
+				clearInterval(statusMonitor);
+				clearInterval(iternetStatusMonitor);
+				clearInterval(isIPConflictMonitor);
 			};
 		}
 	}, [isLoggedIn]);
