@@ -1,26 +1,31 @@
 import { useGlobalContext } from "@/context/GlobalContext";
 import { RootDrawerNavigation } from "@/navigation/types/StackTypes";
-import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import createStyle from "./style";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
 import SunMoonToggle from "../SunMoonToggle";
 
 import { LogoStatus, DataView } from "@/components";
-import { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CustomDrawerContent(props: DrawerContentComponentProps) {
 	const navigation = useNavigation<RootDrawerNavigation>();
-	const { theme, toggleTheme } = useGlobalContext();
+	const { theme, toggleTheme, devConfig } = useGlobalContext();
 	const styles = createStyle(theme);
+	const insets = useSafeAreaInsets();
 
+	const androidNavigationBarHeight = Platform.OS === 'android' ? 48 : 0;
 	return (
 		<ScrollView
 			{...props}
-			style={styles.scroll}
-			contentContainerStyle={styles.scrollContent}
-			keyboardShouldPersistTaps="handled">
+			style={[styles.scroll, {
+				paddingBottom: insets.bottom + androidNavigationBarHeight,
+			}]}
+			contentContainerStyle={[styles.scrollContent, {
+				paddingBottom: insets.bottom + androidNavigationBarHeight + 30, // 20
+			}]}>
 			<TouchableOpacity
 				activeOpacity={0.95}
 				onPress={() => { }} >
@@ -32,7 +37,6 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 				</View>
 			</TouchableOpacity>
 
-
 			<DrawerItem
 				label="Status"
 				labelStyle={styles.label}
@@ -41,12 +45,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 				}}
 				onPress={() => navigation.navigate('Status')}
 			/>
-
-			<TouchableOpacity
-				activeOpacity={1}
-				style={styles.dataViewContainer}>
-				<DataView />
-			</TouchableOpacity>
+			{devConfig.rawData && <DataView />}
 		</ScrollView>
 	)
 }

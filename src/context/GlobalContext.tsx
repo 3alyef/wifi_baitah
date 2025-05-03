@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { GlobalContextInterface } from "./types/GlobalContext.type";
+import { DeveloperFeatures, GlobalContextInterface } from "./types/GlobalContext.type";
 import { ThemeContract, ThemeType } from "@/themes";
 import darkTheme from "@/themes/dark";
 import lightTheme from "@/themes/light";
@@ -19,6 +19,13 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 	const [theme, setTheme] = useState<ThemeContract>(darkTheme);
 	const [currentLanguage, setCurrentLanguage] = useState<Locale>("en");
 	const [direction, setDirection] = useState<direction>('ltr');
+
+	const [devConfig, setDevConfig] = useState<DeveloperFeatures>({
+		debugTools: false,
+		experimental: false,
+		rawData: false,
+		unsafe: false
+	});
 
 	function toggleTheme() {
 		if (themeId == "dark") {
@@ -62,7 +69,11 @@ export default function GlobalContextProvider({ children }: PropsGlobalContextPr
 			direction,
 			currentLanguage,
 			setCurrentLanguage,
-			dictionary
+			dictionary,
+			devConfig,
+			toggleDevFeature: (feature: keyof DeveloperFeatures) =>
+				setDevConfig(prev => ({ ...prev, [feature]: !prev[feature] })),
+			isDevEnabled: devConfig.rawData || devConfig.debugTools || devConfig.experimental
 		}}>
 			{children}
 		</GlobalContext.Provider>

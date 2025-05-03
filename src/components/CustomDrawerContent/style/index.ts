@@ -6,20 +6,17 @@ export default function createStyle(theme: ThemeContract) {
     scroll: {
       backgroundColor: theme.surface,
       flex: 1,
+      //justifyContent: 'center'
     },
-    scrollContent: {
-      justifyContent: "center",
-    },
-    dataViewContainer: {
-      flex: 1,
-    },
+    scrollContent: {},
+    dataViewContainer: {},
     sectionOne: {
       paddingTop: StatusBar.currentHeight,
       paddingHorizontal: 5,
       flexDirection: "row",
       direction: "ltr",
       backgroundColor: theme.primaryDark,
-      minHeight: "20%",
+      minHeight: 220,
       alignItems: "center",
       justifyContent: "space-between",
     },
