@@ -1,21 +1,7 @@
 import { ThemeContract } from "@/themes";
 import { StyleSheet } from "react-native";
 
-interface PropsIconChainColor {
-  iconChainCenterColor: string;
-  iconSubChainLeftColor: string;
-  iconSubChainRightColor: string;
-}
-
-export default function createStyle(
-  theme: ThemeContract,
-  size: number,
-  {
-    iconChainCenterColor,
-    iconSubChainLeftColor,
-    iconSubChainRightColor,
-  }: PropsIconChainColor
-) {
+export default function createStyle(theme: ThemeContract, size: number) {
   return StyleSheet.create({
     statusContainer: {
       flexDirection: "row",
@@ -40,7 +26,7 @@ export default function createStyle(
       transform: [{ rotate: "-45deg" }], // all chain
     },
     iconChainCenter: {
-      color: iconChainCenterColor,
+      //color: iconChainCenterColor,
       zIndex: 1,
     },
     iconSubChain: {
@@ -48,12 +34,12 @@ export default function createStyle(
       zIndex: 0,
     },
     iconSubChainLeft: {
-      color: iconSubChainLeftColor,
-      left: size / 4 + 1.5,
+      //color: iconSubChainLeftColor,
+      left: size / 4 + 1.25,
     },
     iconSubChainRight: {
-      color: iconSubChainRightColor,
-      right: size / 4 + 1.5,
+      //color: iconSubChainRightColor,
+      right: size / 4 + 1.46,
     },
   });
 }

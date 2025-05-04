@@ -11,4 +11,5 @@ export default {
   shadow: "#000000",
   error: "#B00020",
   connectedGreen: "#4CAF50", // light
+  loadingProgress: "#00C0D4",
 } as ThemeContract;

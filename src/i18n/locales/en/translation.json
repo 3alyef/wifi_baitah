@@ -12,5 +12,90 @@
 		"login": {
 			"login": "Login"
 		}
+	},
+	"system": {
+		"connectionStatus": "Connection Status",
+		"statusMsg": {
+				
+			"/*AP模式*/": "Comment",
+
+			"STATIC0": "Comment",
+			"0101": "WAN port unplugged! Please plug the Internet cable into it",
+			"0102": "Disconnected",
+			"0103": "Connecting...Detecting the Internet...",
+			"0104": "Connected...Accessing the Internet...",
+			"0105": "Can not surf the Internet. Please contact your ISP!",
+			"0106": "You can surf the Internet",
+
+			"DHCP0": "Comment",
+			"0201": "WAN port unplugged! Please plug the Internet cable into it",
+			"0202": "Disconnected",
+			"0203": "Connecting...Detecting the Internet...",
+			"0204": "Connected...Accessing the Internet...",
+			"0205": "The router has obtained a valid IP address but cannot access the Internet. Please try the solutions below one by one. \n 1. Clone MAC address \n 1.1. MAC Clone will take effect in 30 seconds. \n 2. Try another computer and reconfigure the router \n 3. Please make sure you have applied a valid Internet service. If not, consult your ISP for help",
+
+			"0206": "You can surf the Internet",
+			"0207": "IP conflict! Please modify LAN IP",
+			"0208": "ERROR: No response from the remote server. Please contact your ISP for help",
+
+			"PPPoE": "Comment",
+			"0301": "WAN port unplugged! Please plug the Internet cable into it",
+			"0302": "Disconnected",
+			"0303": "Checking the user name and password... Please wait. It will take 1~5 minutes",
+			"0304": "Dial-up Successfully...Accessing the Internet...",
+			"0305": "Dial-up Successfully,but can not surf the Internet. Please contact your ISP!",
+			"0306": "You can surf the Internet",
+			"0307": "Failed! Please confirm your user name and password and try again",
+			"0308": "ERROR: No response from the remote  server. Please contact your ISP for help",
+
+			"/************WISP**************/": "Comment",
+			"STATIC1" : "Comment",
+			"1102": "No bridge yet in WISP mode.",
+			"1103": "Bridging in WISP mode...",
+			"1104": "Bridged successfully in WISP mode. Trying accessing the Internet...",
+			"1105": "Can not surf the Internet. Please contact your ISP!",
+			"1106": "Connected! You can surf the Internet.",
+	
+			"1107": "The WiFi password of the base station is incorrect.",
+			"end0": "Comment",
+
+			"DHCP1": "Comment",
+			"1202": "No bridge yet in WISP mode.",
+			"1203": "Bridging in WISP mode...",
+			"1204": "Bridged successfully in WISP mode. Trying accessing the Internet...",
+			"1205": "Get an IP Successfully,but can not surf the Internet. Please contact your ISP!",
+			"1206": "Connected! You can surf the Internet2.",
+			"1207": "IP conflict! Please modify LAN IP",
+			"1208": "ERROR: No response from the remote server. Please contact your ISP for  help",
+
+			"1209": "The WiFi password of the base station is incorrect.",
+			"end1": "Comment",
+
+
+			"PPPoE ": "Comment",
+			"1302": "No bridge yet in WISP mode.",
+			"1303": "Checking the user name and password... Please wait. It will take 1~5  minutes",
+			"1304": "Dial-up Successfully...Accessing the Internet...",
+			"1305": "Dial-up Successfully,but can not surf the Internet. Please contact your ISP!",
+			"1306": "You can surf the Internet",
+			"1307": "Failed! Please confirm your user name and password and try again",
+			"1308": "ERROR: No response from the remote server. Please contact your ISP for help",
+			
+			"1309": "The WiFi password of the base station is incorrect.",
+
+			"APClinet": "Comment",
+			"2102": "No bridge yet in Universal Repeater mode.",
+			"2103": "Bridging in Universal Repeater mode...",
+			"2104": "Bridged successfully in Universal Repeater mode.",
+			"2202": "No bridge yet in Universal Repeater mode.",
+			"2203": "Bridging in Universal Repeater mode...",
+			"2204": "Bridged successfully in Universal Repeater mode.",
+			"2302": "No bridge yet in Universal Repeater mode.",
+			"2303": "Bridging in Universal Repeater mode...",
+			"2304": "Bridged successfully in Universal Repeater mode.",
+			"2107": "The WiFi password of the base station is incorrect.",
+			"2209": "The WiFi password of the base station is incorrect.",
+			"2309": "The WiFi password of the base station is incorrect."
+		}
 	}
 }

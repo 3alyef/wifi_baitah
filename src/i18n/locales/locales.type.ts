@@ -1,3 +1,5 @@
+import { SystemStatusCode } from "./types/system.type";
+
 export default interface TypeLocales {
   global: {
     wifi_habaitah: string;
@@ -12,5 +14,9 @@ export default interface TypeLocales {
     login: {
       login: string;
     };
+  };
+  system: {
+    connectionStatus: string;
+    statusMsg: Record<SystemStatusCode, string>;
   };
 }

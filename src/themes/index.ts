@@ -12,6 +12,7 @@ export interface ThemeContract {
   shadow: string;
   error: string;
   connectedGreen: string;
+  loadingProgress: string;
 }
 
 export const themes = { light, dark };

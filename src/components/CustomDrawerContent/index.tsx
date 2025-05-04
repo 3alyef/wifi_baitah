@@ -4,7 +4,7 @@ import { DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawe
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import createStyle from "./style";
-import { Platform, ScrollView, TouchableOpacity, View } from "react-native";
+import { Platform, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import SunMoonToggle from "../SunMoonToggle";
 
 import { LogoStatus, DataView } from "@/components";
@@ -26,6 +26,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 			contentContainerStyle={[styles.scrollContent, {
 				paddingBottom: insets.bottom + androidNavigationBarHeight + 30, // 20
 			}]}>
+
 			<TouchableOpacity
 				activeOpacity={0.95}
 				onPress={() => { }} >
@@ -37,6 +38,7 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 				</View>
 			</TouchableOpacity>
 
+
 			<DrawerItem
 				label="Status"
 				labelStyle={styles.label}
@@ -45,7 +47,24 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
 				}}
 				onPress={() => navigation.navigate('Status')}
 			/>
-			{devConfig.rawData && <DataView />}
+			{devConfig.rawData &&
+				<>
+					<View>
+						{(() => {
+							const statusCode = '13103060';
+							const connectStatus = statusCode.slice(1, 2);
+							const connectMsg = statusCode.slice(3, 7);
+							return (
+								<Text style={{ color: theme.text, direction: 'ltr' }}>
+									connectStatus: {connectStatus + "\n"}
+									connectMsg: {connectMsg}
+								</Text>
+							);
+						})()}
+					</View>
+					<DataView />
+				</>}
+
 		</ScrollView>
 	)
 }

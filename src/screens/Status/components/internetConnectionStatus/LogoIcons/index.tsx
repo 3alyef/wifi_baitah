@@ -6,38 +6,41 @@ import { useGlobalContext } from "@/context/GlobalContext";
 import { View } from "react-native";
 import createStyle from "./styles";
 import { useEffect, useState } from "react";
+import { SystemStatusCode } from "@/i18n/locales/types/system.type";
+import decryptStatusMsg, { TypeStatusMsg } from "@/services/intelbras.utils/decryptStatusMsg";
 
 interface PropsLogoStatus {
-	size: number
+	size: number;
+	colorStatus: string;
+	connectMsg: SystemStatusCode
 }
 
-export default function LogoIcons({ size }: PropsLogoStatus) {
+export default function LogoIcons({ size, colorStatus, connectMsg }: PropsLogoStatus) {
 
 	const { theme } = useGlobalContext();
 
-	const [iconSubChainLeftColor, setIconSubChainLeftColor] = useState(theme.background);
-	const [iconChainCenterColor, setIconChainCenterColor] = useState(theme.background);
-	const [iconSubChainRightColor, setIconSubChainRightColor] = useState(theme.background);
+	const [chargeLeftSec1, setChargeLeftSec1] = useState(theme.background);
+	const [chargeLeftSec2, setChargeLeftSec2] = useState(theme.background);
+	const [chargeRightSec1, setChargeRightSec1] = useState(theme.background);
+	const [chargeRightSec2, setChargeRightSec2] = useState(theme.background);
+	const [chargeCenterSec1, setChargeCenterSec1] = useState(theme.background);
+	const [chargeCenterSec2, setChargeCenterSec2] = useState(theme.background);
 
-	const styles = createStyle(theme, size, {
-		iconChainCenterColor,
-		iconSubChainLeftColor,
-		iconSubChainRightColor
-	});
+	const styles = createStyle(theme, size);
 
 	function charging(timer: number, firstTime: boolean) {
 		function charge(timer: number) {
-			setIconSubChainLeftColor(theme.connectedGreen);
+			setChargeLeftSec2(theme.loadingProgress);
 			setTimeout(() => {
-				setIconSubChainLeftColor(theme.background);
-				setIconChainCenterColor(theme.connectedGreen);
+				setChargeLeftSec2(theme.background);
+				setChargeCenterSec2(theme.loadingProgress);
 
 				setTimeout(() => {
-					setIconChainCenterColor(theme.background);
-					setIconSubChainRightColor(theme.connectedGreen);
+					setChargeCenterSec2(theme.background);
+					setChargeRightSec2(theme.loadingProgress);
 
 					setTimeout(() => {
-						setIconSubChainRightColor(theme.background);
+						setChargeRightSec2(theme.background);
 					}, timer);
 				}, timer);
 			}, timer);
@@ -52,16 +55,47 @@ export default function LogoIcons({ size }: PropsLogoStatus) {
 		}
 	}
 
-	/*useEffect(() => {
-		const timer = 500;
-		let firstTime = true;
-		const intervalId = setInterval(() => {
-			charging(timer, firstTime);
-			firstTime = false;
-		}, timer * 4); // chama charging a cada 1.5s
+	useEffect(() => {
+		let typeStatusMsg: TypeStatusMsg = decryptStatusMsg(connectMsg);
+		let intervalId: number;
+		if (typeStatusMsg === "connecting") {
+			setChargeLeftSec1(theme.connectedGreen);
+			setChargeCenterSec1(theme.connectedGreen);
+			setChargeRightSec1(theme.connectedGreen);
+			const timer = 500;
+			let firstTime = true;
+			intervalId = setInterval(() => {
+				charging(timer, firstTime);
+				firstTime = false;
+			}, timer * 4); // chama charging a cada 1.5s
 
+
+		} else if (typeStatusMsg == "connected") {
+			setChargeLeftSec1(theme.connectedGreen);
+			setChargeCenterSec1(theme.connectedGreen);
+			setChargeRightSec1(theme.connectedGreen);
+			setChargeLeftSec2(theme.connectedGreen);
+			setChargeCenterSec2(theme.connectedGreen);
+			setChargeRightSec2(theme.connectedGreen);
+		} else if (typeStatusMsg == "user problem") {
+			setChargeLeftSec1(theme.error);
+			setChargeCenterSec1(theme.error);
+			setChargeRightSec1(theme.error);
+			setChargeLeftSec2(theme.background);
+			setChargeCenterSec2(theme.background);
+			setChargeRightSec2(theme.background);
+		} else if (typeStatusMsg == "hardware problem" || typeStatusMsg == "software problem") {
+			setChargeLeftSec1(theme.connectedGreen);
+			setChargeCenterSec1(theme.connectedGreen);
+			setChargeRightSec1(theme.connectedGreen);
+			setChargeLeftSec2(theme.error);
+			setChargeCenterSec2(theme.error);
+			setChargeRightSec2(theme.error);
+		}
 		return () => clearInterval(intervalId);
-	}, []);*/
+	}, [connectMsg]);
+
+
 	return (
 		<View style={styles.statusContainer}>
 			<View style={styles.iconContainer}>
@@ -70,9 +104,15 @@ export default function LogoIcons({ size }: PropsLogoStatus) {
 
 			<View style={styles.chainContainer}>
 
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainLeft, styles.iconSubChain]} />
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconChainCenter]} />
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainRight, styles.iconSubChain]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainLeft, styles.iconSubChain, {
+					color: chargeLeftSec1
+				}]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconChainCenter, {
+					color: chargeCenterSec1
+				}]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainRight, styles.iconSubChain, {
+					color: chargeRightSec1
+				}]} />
 			</View>
 
 			<View style={styles.iconContainer}>
@@ -80,9 +120,15 @@ export default function LogoIcons({ size }: PropsLogoStatus) {
 			</View>
 
 			<View style={styles.chainContainer}>
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainLeft, styles.iconSubChain]} />
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconChainCenter]} />
-				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainRight, styles.iconSubChain]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainLeft, styles.iconSubChain, {
+					color: chargeLeftSec2
+				}]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconChainCenter, {
+					color: chargeCenterSec2
+				}]} />
+				<FontAwesome name="chain" size={size / 2} style={[styles.icon, styles.iconChain, styles.iconSubChainRight, styles.iconSubChain, {
+					color: chargeRightSec2
+				}]} />
 			</View>
 
 			<View style={styles.iconContainer}>
