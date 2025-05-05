@@ -1,13 +1,18 @@
 import { useGlobalContext } from "@/context/GlobalContext";
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
 import createStyle from "./style";
 import LogoIcons from "./LogoIcons";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { useEffect, useState } from "react";
 import { SystemStatusCode } from "@/i18n/locales/types/system.type";
+import TitleLabel from "../TitleLabel";
+import { Section } from "@/components";
+import DataUpper from "../DataUpper";
 
-export default function InternetConnectionStatus() {
+export default function InternetConnectionStatus({ subSectionStyle }: {
+	subSectionStyle?: StyleProp<ViewStyle>
+}) {
 	const { theme, dictionary, direction } = useGlobalContext();
 
 	const [connectStatus, setConnectStatus] = useState('2');
@@ -34,29 +39,30 @@ export default function InternetConnectionStatus() {
 		}
 	}, [internetStatus]);
 
-	const styles = createStyle(theme, direction);
+	const styles = createStyle(theme);
 
 	if (!dictionary || !connectMsg) return <></>
 
 
 	const { system } = dictionary;
 	return (
-		<View style={styles.container}>
+		<Section style={[{
+			direction: "ltr",
+			rowGap: 15,
+		}, subSectionStyle]}>
+			<TitleLabel text={system.internetConnectionStatus.Internet_Connection_Status} />
 			<LogoIcons size={size} colorStatus={colorStatus(connectStatus)} connectMsg={connectMsg} />
-			<TouchableOpacity
-				activeOpacity={0.95}>
-				<View style={styles.statusContainer}>
-					<Text style={styles.statusLabel}>
-						{system.connectionStatus}:
-					</Text>
-					<Text style={[
-						styles.statusValue,
-						{ color: colorStatus(connectStatus) }
-					]}>
-						{system.statusMsg[connectMsg]}
-					</Text>
-				</View>
-			</TouchableOpacity>
-		</View>
+			<DataUpper>
+				<Text style={styles.statusLabel}>
+					{system.internetConnectionStatus.Connection_Status}:
+				</Text>
+				<Text style={[
+					styles.statusValue,
+					{ color: colorStatus(connectStatus) }
+				]}>
+					{system.statusMsg[connectMsg]}
+				</Text>
+			</DataUpper>
+		</Section>
 	)
 }

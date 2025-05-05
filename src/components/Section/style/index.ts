@@ -12,6 +12,7 @@ export default function createStyle(theme: ThemeContract) {
       shadowOpacity: 0.2,
       shadowRadius: 4,
       elevation: 5, // para Android
+      rowGap: 20,
     },
   });
 }

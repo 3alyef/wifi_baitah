@@ -14,7 +14,26 @@
 		}
 	},
 	"system": {
-		"connectionStatus": "Connection Status",
+		"internetConnectionStatus": {
+			"Internet_Connection_Status": "Internet Connection Status",
+			"Connection_Status": "Connection Status"
+		},
+		"devicesStatistics": {
+			"Attached_Devices_and_Real_time_Statistics": "Attached Devices and Real-time Statistics"
+		},
+		"systemInfo": {
+			"System_Info": "System Info",
+			"Connection_Type": "Connection Type",
+			"Connection_Duration": "Connection Duration",
+			"WAN_MAC": "WAN MAC",
+			"LAN_IP": "LAN IP",
+			"Firmware_Version": "Firmware Version",
+			"WAN_IP": "WAN IP",
+			"Subnet_Mask": "Subnet Mask",
+			"Default_Gateway": "Default Gateway",
+			"Preferred_DNS_Server": "Preferred DNS Server",
+			"Alternative_DNS_Server": "Alternative DNS Server"
+		},
 		"statusMsg": {
 				
 			"/*AP模式*/": "Comment",

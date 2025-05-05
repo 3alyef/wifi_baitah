@@ -11,7 +11,7 @@ export default function Section({ children, style }: PropsSection) {
 	const { theme } = useGlobalContext();
 	const styles = createStyle(theme);
 	return (
-		<View style={[style, styles.container]} >
+		<View style={[styles.container, style]} >
 			{children}
 		</View>
 	)
